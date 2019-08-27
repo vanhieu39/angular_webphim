@@ -1,0 +1,46 @@
+<ng-container *ngIf="movie">
+  <div class="container bg-light">
+    <div class="row">
+      <div class="col-sm-6">
+        <img [src]="movie.HinhAnh" alt="">
+      </div>
+      <div class="col-sm-6">
+        <table class="table">
+          <tbody>
+            <tr>
+              <td>Tên Phim</td>
+              <td>{{movie.TenPhim}}</td>
+            </tr>
+            <tr>
+              <td>Mô tả</td>
+              <td>{{movie.MoTa}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Tên Rạp</th>
+              <th>Ngày Chiếu</th>
+              <th>Giờ chiếu</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of movie.LichChieu">
+              <td scope="row">{{item.Rap.TenRap}}</td>
+              <td>{{item.NgayChieuGioChieu | date: "dd-MM-yyyy"}}</td>
+              <td>{{item.NgayChieuGioChieu | date: "hh:mm"}}</td>
+              <td>
+                <button class="btn btn-success" (click)="datVe(item.MaLichChieu)">Đặt vé</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</ng-container>

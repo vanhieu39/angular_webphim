@@ -1,0 +1,77 @@
+<div class="container bg-light">
+  <div class="row">
+    <div class="col-sm-6 mx-auto">
+      <form #registerForm="ngForm" (ngSubmit)="dangKy(registerForm.value)">
+        <div class="form-group">
+          <label for="">Tài khoản</label>
+          <input
+            type="text"
+            minlength="7"
+            maxlength="15"
+            class="form-control"
+            name="taiKhoan"
+            #TaiKhoan="ngModel"
+            ngModel
+            required
+          />
+
+          <div
+            *ngIf="TaiKhoan.errors && (TaiKhoan.dirty || TaiKhoan.touched)"
+            class="alert alert-danger"
+          >
+            <!-- Kiểm tra rỗng -->
+            <div *ngIf="TaiKhoan.errors.required">
+              Vui lòng nhập tài khoản
+            </div>
+
+            <!-- Kiểm tra độ dài -->
+            <div *ngIf="TaiKhoan.errors.minlength || TaiKhoan.errors.maxlength">
+              Vui lòng nhập ký tự từ 7-15
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="">Mật khẩu</label>
+          <input type="text" class="form-control" name="matKhau" ngModel />
+        </div>
+
+        <div class="form-group">
+          <label for="">Email</label>
+          <input
+            type="text"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+            class="form-control"
+            name="email"
+            #Email="ngModel"
+            ngModel
+            required
+          />
+
+          <div
+            *ngIf="Email.errors && (Email.dirty || Email.touched)"
+            class="alert alert-danger"
+          >
+            <!-- Kiểm tra rỗng -->
+            <div *ngIf="Email.errors.required">
+              Vui lòng nhập email
+            </div>
+
+            <!-- Kiểm tra Email đúng định dạng? -->
+            <div *ngIf="Email.errors.pattern">
+              Email không đúng định dạng
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="">Số ĐT</label>
+          <input type="text" class="form-control" name="soDT" ngModel />
+        </div>
+        <button class="btn btn-success" [disabled]="!registerForm.valid">
+          Đăng ký
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

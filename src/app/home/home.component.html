@@ -1,0 +1,15 @@
+<div class="bg-dark">
+  <div class="container-fluid">
+    <app-header></app-header>
+  </div>
+
+  <!-- Trang home nên giữ header và footer,
+    đặt router outlet để vào từng trang 1, ví dụ: trang chính sẽ là content component
+    của content module (1 trang là 1 module lớn)
+  -->
+ <router-outlet></router-outlet>
+ 
+  <div class="mt-5">
+    <app-footer></app-footer>
+  </div>
+</div>

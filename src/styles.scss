@@ -1,0 +1,35 @@
+/* You can add global styles to this file, and also import other style files */
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.owl-prev {
+  position: absolute;
+  top: 40%;
+  left: 0px;
+  font-size: 100px;
+}
+.owl-next:hover span {
+  background: none;
+}
+.owl-prev span {
+  font-size: 165px;
+}
+.owl-next {
+  position: absolute;
+  top: 40%;
+  right: 0px;
+  font-size: 100px;
+}
+.owl-next span {
+  font-size: 165px;
+}
+.carousel-item img {
+  height: 500px;
+  width: 100%;
+}
