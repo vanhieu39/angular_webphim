@@ -1,5 +1,5 @@
 <div class="container bg-light my-2">
-  <app-danh-sach-ghe [gheArray]="DanhSachGheNgoi"></app-danh-sach-ghe>
+  <app-danh-sach-ghe [gheArray]="DanhSachGheNgoi"(emitDSDangDat)="danhSachGheDangDat($event)" ></app-danh-sach-ghe>
   <div class="row">
     <div class="col-6 mx-auto text-center">
       <button class="btn btn-success" (click)="layThongTinNguoiDung()">

@@ -8,8 +8,10 @@ import { DataService } from "@DataService/data.service";
   styleUrls: ["./phong-ve.component.scss"]
 })
 export class PhongVeComponent implements OnInit {
-  MaLichChieu: string;
+  MaLichChieu: number;
   DanhSachGheNgoi: any[] = [];
+  DanhSachGheDat: any[] = [];
+  TaiKhoanNguoiDung: string;
   constructor(
     private activeRoute: ActivatedRoute,
     private router: Router,
@@ -18,17 +20,34 @@ export class PhongVeComponent implements OnInit {
 
   ngOnInit() {
     this.chiTietPhongVe();
+  //  this.danhSachGheDangDat(this.DanhSachGheDat);
   }
-  layThongTinNguoiDung() {
-    console.log("đặt ghế");
+  layThongTinNguoiDung() {    
+
     let taiKhoanHienTai = JSON.parse(localStorage.getItem("userLogin"));
     if (taiKhoanHienTai != null) {
-      taiKhoanHienTai.TaiKhoan;
+      this.TaiKhoanNguoiDung =  taiKhoanHienTai.TaiKhoan;
     } else {
       alert("Vui lòng đăng nhập để đặt ghế");
       this.router.navigate(["./home/dang-nhap/"]);
     }
     console.log(taiKhoanHienTai.TaiKhoan);
+
+
+     const objVe:{MaLichChieu:number;TaiKhoanNguoiDung:string;DanhSachVe:any[]}={
+      MaLichChieu:this.MaLichChieu,
+      TaiKhoanNguoiDung:this.TaiKhoanNguoiDung,
+      DanhSachVe:this.DanhSachGheDat
+    }
+    console.log("obj dat ghe: ",objVe);
+
+    const uri = "QuanLyDatVe/DatVe";
+    this.dataService.post(uri,objVe).subscribe((data:any)=>{
+      if(data=== "Đặt vé thành công!"){
+        alert("Đặt vé thành công!");
+       this.router.navigate(["/"]);
+      }
+    })
   }
   chiTietPhongVe() {
     this.activeRoute.params.subscribe(
@@ -44,5 +63,9 @@ export class PhongVeComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+  danhSachGheDangDat(thamso) {
+    this.DanhSachGheDat = thamso;
+    console.log("output: ", this.DanhSachGheDat);
   }
 }

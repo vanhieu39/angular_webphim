@@ -30,7 +30,7 @@ export class DanhSachGheComponent implements OnInit {
   soGheConLai: number = 0;
   DanhSachGheDangDat = [];
 
-  @Output emitDSDangDat: any = ([] = new EventEmitter());
+  @Output() emitDSDangDat = new EventEmitter();
 
   DatGheParent(status, ghe) {
     let ve: { MaGhe: string; GiaVe: number } = {
@@ -41,9 +41,7 @@ export class DanhSachGheComponent implements OnInit {
       this.soGheDaDat++;
       this.soGheConLai--;
       this.DanhSachGheDangDat.push(ve);
-
-      this.emitDSDangDat = this.DanhSachGheDangDat;
-      console.log(this.emitDSDangDat);
+      this.emitDSDangDat.emit(this.DanhSachGheDangDat);
     } else {
       this.soGheDaDat--;
       this.soGheConLai++;
@@ -62,5 +60,8 @@ export class DanhSachGheComponent implements OnInit {
   }
 
   constructor() {}
-  ngOnInit() {}
+  ngOnInit() {
+   
+    
+  }
 }
