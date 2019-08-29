@@ -6,7 +6,9 @@ import {
   Input,
   OnChanges,
   SimpleChanges,
-  AfterViewInit
+  AfterViewInit,
+  Output,
+  EventEmitter
 } from "@angular/core";
 import { ItemGheComponent } from "./item-ghe/item-ghe.component";
 
@@ -24,17 +26,24 @@ export class DanhSachGheComponent implements OnInit {
 
   @Input() gheArray: any = [];
 
-  mangTam: any = [];
-
   soGheDaDat: number = 0;
   soGheConLai: number = 0;
   DanhSachGheDangDat = [];
 
+  @Output emitDSDangDat: any = ([] = new EventEmitter());
+
   DatGheParent(status, ghe) {
+    let ve: { MaGhe: string; GiaVe: number } = {
+      MaGhe: ghe.MaGhe,
+      GiaVe: ghe.GiaVe
+    };
     if (status) {
       this.soGheDaDat++;
       this.soGheConLai--;
-      this.DanhSachGheDangDat.push(ghe);
+      this.DanhSachGheDangDat.push(ve);
+
+      this.emitDSDangDat = this.DanhSachGheDangDat;
+      console.log(this.emitDSDangDat);
     } else {
       this.soGheDaDat--;
       this.soGheConLai++;
@@ -45,18 +54,13 @@ export class DanhSachGheComponent implements OnInit {
       }
     }
   }
-  ngOnChanges(change: SimpleChanges) {
-    this.soGheConLai = this.gheArray.length;
-    this.mangTam = this.gheArray;
+  ngOnChanges(changes: SimpleChanges) {
+    const soGheDaDat = this.gheArray.filter(x => x.DaDat === true);
+    this.soGheConLai = this.gheArray.length - soGheDaDat.length;
+    this.soGheDaDat = soGheDaDat.length;
+    console.log(this.gheArray);
   }
-  // ngAfterViewInit() {
-  //   console.log("ghe trang danh ghe:", this.mangTam);
-  //   for (let ghe of this.gheArray) {
-  //     if (ghe.DaDat) {
-  //       this.soGheConLai--;
-  //     }
-  //   }
-  // }
+
   constructor() {}
   ngOnInit() {}
 }

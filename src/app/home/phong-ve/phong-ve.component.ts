@@ -19,6 +19,17 @@ export class PhongVeComponent implements OnInit {
   ngOnInit() {
     this.chiTietPhongVe();
   }
+  layThongTinNguoiDung() {
+    console.log("đặt ghế");
+    let taiKhoanHienTai = JSON.parse(localStorage.getItem("userLogin"));
+    if (taiKhoanHienTai != null) {
+      taiKhoanHienTai.TaiKhoan;
+    } else {
+      alert("Vui lòng đăng nhập để đặt ghế");
+      this.router.navigate(["./home/dang-nhap/"]);
+    }
+    console.log(taiKhoanHienTai.TaiKhoan);
+  }
   chiTietPhongVe() {
     this.activeRoute.params.subscribe(
       kq => {
