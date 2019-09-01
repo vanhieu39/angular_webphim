@@ -8,8 +8,8 @@ const routes: Routes = [
   { path: "home", loadChildren: "./home/home.module#HomeModule" },
   //Trang admin
   { path: "admin", loadChildren: "./admin/admin.module#AdminModule" },
-  //Trang không tìm thấy
-  //{ path: "**", component: PageNotFoundComponent }
+  // Trang không tìm thấy
+  { path: "**", component: PageNotFoundComponent }
 ];
 
 @NgModule({

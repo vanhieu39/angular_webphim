@@ -61,8 +61,16 @@
     <!-- login logout  -->
     <div class="col-sm-3">
       <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <!-- Links -->
-        <ul class="navbar-nav">
+        <ul class="navbar-nav" *ngIf="statusLogin; else chuaLogin">
+          <li class="nav-item text-light">
+            Hello,{{ userLogin }}
+            <button class="btn btn-danger" (click)="logOut()">
+              LogOut
+            </button>
+          </li>
+        </ul>
+        <ng-template #chuaLogin>
+          <!-- Links -->
           <li class="nav-item">
             <a class="nav-link" routerLink="/home/dang-ky">Đăng ký</a>
           </li>
@@ -74,7 +82,7 @@
               </button></a
             >
           </li>
-        </ul>
+        </ng-template>
       </nav>
     </div>
 
