@@ -4,9 +4,7 @@ import {
   ViewChildren,
   QueryList,
   Input,
-  OnChanges,
   SimpleChanges,
-  AfterViewInit,
   Output,
   EventEmitter
 } from "@angular/core";
@@ -41,6 +39,10 @@ export class DanhSachGheComponent implements OnInit {
       this.soGheDaDat++;
       this.soGheConLai--;
       this.DanhSachGheDangDat.push(ve);
+      // console.log("danh sach ghe dang dat", this.DanhSachGheDangDat.length);
+      // if (this.DanhSachGheDangDat.length === 0) {
+      //   alert("Xin mời chọn ghế");
+      // } else {
       this.emitDSDangDat.emit(this.DanhSachGheDangDat);
     } else {
       this.soGheDaDat--;
@@ -60,8 +62,5 @@ export class DanhSachGheComponent implements OnInit {
   }
 
   constructor() {}
-  ngOnInit() {
-   
-    
-  }
+  ngOnInit() {}
 }
